@@ -144,7 +144,7 @@ def update_plot(frame):
 try:
     init_game()
     max_ = 0
-    mult = 3.5
+    mult = 0.5
     THRESHOLD = 6
     if args.samplerate is None:
         device_info = sd.query_devices(args.device, 'input')
