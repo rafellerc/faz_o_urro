@@ -115,8 +115,7 @@ def update_plot(frame):
     global THRESHOLD
     global mult
     global max_
-    if timem.time() - start > 10:
-        print(timem.time())
+    if timem.time() - start > 2:
         start = timem.time()
         mult += 0.5
     while True:
@@ -145,7 +144,7 @@ try:
     init_game()
     max_ = 0
     mult = 0.5
-    THRESHOLD = 6
+    THRESHOLD = 2
     if args.samplerate is None:
         device_info = sd.query_devices(args.device, 'input')
         args.samplerate = device_info['default_samplerate']
@@ -154,12 +153,13 @@ try:
     plotdata = np.zeros((length, len(args.channels)))
 
     fig, ax = plt.subplots()
+    ax.set_title('Faz o Urro Shrélder!!')
     lines = ax.plot(plotdata)
     horline = ax.axhline(y=THRESHOLD, c='r')
     if len(args.channels) > 1:
         ax.legend(['channel {}'.format(c) for c in args.channels],
                   loc='lower left', ncol=len(args.channels))
-    ax.axis((0, len(plotdata), 0, 10))
+    ax.axis((0, len(plotdata), 0, 3))
     # ax.set_yticks([0])
     ax.yaxis.grid(True)
     ax.tick_params(bottom=False, top=False, labelbottom=False,
